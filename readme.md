@@ -1,56 +1,53 @@
 **Modelo de Inteligencia Transaccional para la Prevención de Fraude Bancario (AML)**
+**Sistema que detecta transacciones sospechosas en tiempo real y reduce costos operativos en banca.**
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688.svg)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4.1-orange.svg)
 ![Power BI](https://img.shields.io/badge/Power_BI-Dashboard-F2C811.svg)
+En el sector financiero, la detección de lavado de dinero (AML) suele basarse en reglas rígidas que generan demasiados falsos positivos, lo que aumenta los costos de revisión manual.
+Este proyecto propone una solución de inteligencia híbrida que combina reglas de negocio con modelos de Machine Learning para detectar patrones de fraude más complejos, como el fraccionamiento de transacciones (smurfing), con mayor precisión. Esto permite a las instituciones financieras actuar más rápido y reducir errores sin afectar a clientes legítimos.
 
-Este proyecto presenta una solución técnica integral para la gestión de riesgos operativos y la Prevención de Lavado de Dinero (AML). La plataforma transiciona de la validación tradicional basada en reglas fijas a la implementación de algoritmos de aprendizaje supervisado para la detección de anomalías transaccionales complejas.
+La plataforma sustituye el enfoque tradicional basado únicamente en reglas por un sistema más avanzado que utiliza aprendizaje supervisado para identificar anomalías en las transacciones y mejorar la gestión del riesgo operativo.
 
 **Impacto y Viabilidad Financiera**
 
-El modelo está estructurado para evaluarse estrictamente como un proyecto de inversión. El pipeline analítico calcula los siguientes indicadores de rentabilidad (PnL):
+El modelo bajo un dataset sintetico está estructurado para evaluarse estrictamente como un proyecto de inversión. El pipeline analítico calcula los siguientes indicadores de rentabilidad (PnL):
 * Retorno de Inversión (ROI): 257.2%
 * Período de Recuperación (Breakeven): 1.3 meses
 * Optimización Operativa: Reducción de costos por horas-hombre en la revisión de falsos positivos y mitigación de fricción con clientes legítimos (control de churn).
 
-[Insertar aquí captura de pantalla - Vista de Impacto Financiero y Rentabilidad]
 
-[Insertar aquí captura de pantalla - Vista de Monitoreo Transaccional]
+![Impacto Financiero y Rentabilidad](img/ROI_PBI.png)
+*Tablero de rentabilidad: ROI del 257.20% y análisis de Breakeven.*
+Esta captura muestra el tablero de Impacto Financiero. En ella se aprecian los KPIs de rentabilidad, la evolución de la ganancia neta y la comparativa entre el ahorro bruto generado frente al costo operativo de revisión. Demuestra la viabilidad económica del sistema.
+
+![Reporte Transaccional de Fraude](img/Reporte_transaccional_PBI.png)
+*Monitoreo operativo: Análisis de modus operandi y vulnerabilidad por canal.*
+Esta captura muestra el Reporte Transaccional. Incluye la tendencia de alertas en el tiempo, la vulnerabilidad por canal (móvil, web, API), la concentración geográfica de riesgo y un desglose de los modus operandi detectados (como Smurfing o montos inusuales).
 
 **Arquitectura del Modelo**
 
 El sistema opera bajo evaluación de riesgo híbrido:
-1. Reglas de Negocio (40%): Evaluación heurística basada en canales de origen, geografía (países de alto riesgo FATF) y tipologías conocidas (Smurfing, Frecuencia Anormal).
-2. Machine Learning (60%): Modelo predictivo de clasificación optimizado para maximizar la identificación de amenazas sin comprometer el gasto operativo mediante falsos positivos.
+1. Reglas de Negocio (40%): Evaluación de parámetros conocidos como países de alto riesgo, horarios inusuales y tipologías clásicas de fraude.
+2. Machine Learning (60%): Un pipeline de clasificación basado en Gradient Boosting que analiza patrones de comportamiento histórico y desviaciones estadísticas en tiempo real.
 
 El feature engineering manual y la ponderación del score buscan equilibrar la interpretabilidad económica exigida por las normativas de cumplimiento con la precisión estadística del modelo.
 
-**Estructura del Repositorio**
-
-* `generadordata1.py`: Simulación de entorno transaccional y perfiles de riesgo.
-* `atributosfe2.py`: Construcción de variables (feature engineering) basadas en comportamiento histórico y ventanas temporales.
-* `modelo3.py`: Pipeline de entrenamiento, validación cruzada y selección del algoritmo óptimo.
-* `impactofinanciero6.py`: Motor de cálculo económico para estructurar las métricas de rentabilidad y matrices de costos operativos.
-* `API4.py`: Integración RESTful construida con FastAPI para la evaluación de transacciones y consulta de perfiles en tiempo real.
-* `scriptpowerbi.py`: Ingesta y transformación de las tablas de hechos y dimensiones para su visualización en tableros de control gerencial.
-
-**Notas de Validación y Limitaciones**
-El sistema documentado en este repositorio utiliza datos generados mediante simulación para establecer un entorno controlado. Los niveles de accuracy observados responden a esta naturaleza sintética. Para su despliegue en un entorno de producción, la arquitectura requiere calibración con transacciones históricas reales y ajustes en los umbrales de decisión para prevenir anomalías estadísticas como el overfitting o el data leakage.
+**Resultados y Desempeño**
+Identificación de Patrones con alta efectividad detectando técnicas de Smurfing (fraccionamiento de transacciones) y anomalías de frecuencia.
+El modelo fue calibrado para maximizar la captura de fraude real sin saturar a los analistas con alertas irrelevantes, logrando un ahorro directo por cada dólar invertido en tecnología
 
 **Instrucciones de Ejecución**
 
 Instalación de dependencias:
-   pip install -r requirements.txt
+pip install -r requirements.txt
 
 
 
 **Guía de Uso**
 
-
-
 Ejecución del Pipeline de Datos
-
-Para procesar la información desde cero y entrenar el modelo, ejecute el script maestro:
+Para procesar la información desde cero, realizar el entrenamiento del modelo y generar las métricas financieras:
 
 python mainpipeline0.py
 
@@ -59,28 +56,21 @@ python mainpipeline0.py
 Este proceso generará los archivos transactions\_scored.csv y model\_best.pkl en el directorio de datos.
 
 
-
-Inicio del Servidor de Inteligencia (API)
-
-Para habilitar el monitoreo en tiempo real y los endpoints del dashboard, inicie el servidor:
-
-uvicorn API4:app --reload
-
-
-
-http://127.0.0.1:8000/docs
-
-
-
 **Uso en Power BI Desktop**
 
 Utilice el script scriptpowerbi.py dentro del entorno de Power BI para cargar las tablas de hechos y dimensiones procesadas por el modelo, permitiendo la creación de tableros de control para la toma de decisiones gerenciales
 
+**Sobre mi**
+Mi nombre es Jose Luis Sanchez
+Economista especializado en Analítica de Datos Consultoria y estrategia financiera.
+
+Diseño soluciones integrales que conectan el análisis estadístico avanzado con objetivos financieros claros. Tengo experiencia desarrollando modelos predictivos, automatización de procesos mediante Python y creación de ecosistemas de datos que facilitan la toma de decisiones ejecutivas.
+Estoy enfocado en posiciones de Data Analyst, Financial Analyst o Data Scientist donde pueda aplicar mi visión dual (económica y técnica) para optimizar la rentabilidad de productos digitales y financieros.
+No solo desarrollo dashboards, escribo código o limpio datos, me gusta aportar ideas en base a datos, transformar información en decisiones. Mi enfoque asegura que cada solución analítica tenga impacto en el negocio, sea medible y aporte valor real a la operación en la toma de decisiones. 
+
 **Soporte y Ayuda**
-Para dudas o errores, puedes abrir un issue en este repositorio o contactar directamente al desarrollador en: jsanchez.eco@outlook.com
+Para dudas o errores, puedes abrir un issue en este repositorio o contactar directamente conmigo en: jsanchez.eco@outlook.com
 
 **Contribuciones**
 Este proyecto forma parte de un portafolio profesional, por lo que no está orientado a contribuciones externas. Sin embargo, se agradecen sugerencias o comentarios a través de issues.
 
-**Mantenimiento**
-Desarrollado y mantenido por Jose Luis Sanchez, economista enfocado en analítica y ciencia de datos.
