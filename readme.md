@@ -4,6 +4,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688.svg)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4.1-orange.svg)
 ![Power BI](https://img.shields.io/badge/Power_BI-Dashboard-F2C811.svg)
+
 En el sector financiero, la detección de lavado de dinero (AML) suele basarse en reglas rígidas que generan demasiados falsos positivos, lo que aumenta los costos de revisión manual.
 Este proyecto propone una solución de inteligencia híbrida que combina reglas de negocio con modelos de Machine Learning para detectar patrones de fraude más complejos, como el fraccionamiento de transacciones (smurfing), con mayor precisión. Esto permite a las instituciones financieras actuar más rápido y reducir errores sin afectar a clientes legítimos.
 
